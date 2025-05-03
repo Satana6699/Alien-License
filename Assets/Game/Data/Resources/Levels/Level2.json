@@ -1,0 +1,19 @@
+﻿{
+    "size": { "x": 10, "y": 10 },
+    "endPoint": {"x": 9, "y": 9},
+    "playerBlockType": "player_chair",
+    "playerSize": { "x": 1, "y": 1 },
+    "playerPositions": [ { "x": 8, "y": 8 } ],
+    "blocks": [
+        { "size": { "x": 2, "y": 1 }, "positions": [ { "x": 0, "y": 0 }, { "x": 1, "y": 0 } ], "blockType": "air_hockey" },
+        { "size": { "x": 2, "y": 1 }, "positions": [ { "x": 2, "y": 0 }, { "x": 3, "y": 0 } ], "blockType": "air_hockey" },
+        { "size": { "x": 2, "y": 1 }, "positions": [ { "x": 4, "y": 0 }, { "x": 5, "y": 0 } ], "blockType": "air_hockey" },
+        { "size": { "x": 2, "y": 1 }, "positions": [ { "x": 6, "y": 0 }, { "x": 7, "y": 0 } ], "blockType": "air_hockey" },
+
+        { "size": { "x": 1, "y": 2 }, "positions": [ { "x": 0, "y": 2 }, { "x": 0, "y": 3 } ], "blockType": "bed" },
+        { "size": { "x": 1, "y": 2 }, "positions": [ { "x": 1, "y": 2 }, { "x": 1, "y": 3 } ], "blockType": "bed" },
+        { "size": { "x": 1, "y": 2 }, "positions": [ { "x": 2, "y": 2 }, { "x": 2, "y": 3 } ], "blockType": "bed" },
+        { "size": { "x": 1, "y": 2 }, "positions": [ { "x": 3, "y": 2 }, { "x": 3, "y": 3 } ], "blockType": "bed" },
+        { "size": { "x": 1, "y": 2 }, "positions": [ { "x": 4, "y": 2 }, { "x": 4, "y": 3 } ], "blockType": "bed" }
+    ]
+}

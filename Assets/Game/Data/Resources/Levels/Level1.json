@@ -1,6 +1,18 @@
 ﻿{
     "size": { "x": 7, "y": 7 },
     "blocks": [
+
+        {
+            "size": { "x": 1, "y": 1 },
+            "positions": [ { "x": 5, "y": 5 } ],
+            "blockType": "player_chair"
+        },
+        {
+            "size": { "x": 1, "y": 1 },
+            "positions": [ {"x": 5, "y": 6} ],
+            "blockType": "end_level_1_1"
+        },
+
         {
             "size": { "x": 2, "y": 1 },
             "positions": [ { "x": 0, "y": 0 }, { "x": 1, "y": 0 } ],

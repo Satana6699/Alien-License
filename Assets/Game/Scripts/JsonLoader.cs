@@ -5,17 +5,13 @@ namespace Game.Scripts
 {
     public static class JsonLoader
     {
-        public static BlockList LoadLevel(string jsonPath)
+        public static LevelData LoadLevel(string jsonPath)
         {
             TextAsset jsonFile = Resources.Load<TextAsset>(jsonPath);
 
             if (jsonFile != null)
             {
-                BlockList data = JsonUtility.FromJson<BlockList>(jsonFile.text);
-                foreach (var block in data.blocks)
-                {
-                    Debug.Log($"Тип: {block.blockType}, Кол-во позиций: {block.positions.Count}");
-                }
+                LevelData data = JsonUtility.FromJson<LevelData>(jsonFile.text);
 
                 return data;
             }
