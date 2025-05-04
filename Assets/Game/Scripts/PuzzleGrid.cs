@@ -1,4 +1,5 @@
 using Game.Scripts.Tags;
+using TMPro;
 using UnityEngine;
 
 namespace Game.Scripts
@@ -12,13 +13,25 @@ namespace Game.Scripts
         private PuzzleBlock _endLevel;
         private PuzzleBlock _currentPuzzleBlock;
         private Camera _mainCamera;
+        public int movesCount;
+        private bool _gameOver = false;
+
+        [SerializeField] private TextMeshProUGUI _movesCountText;
+
+        [SerializeField] private GameObject _gameOverPanel;
+
+        public PuzzleBlock this[int x, int y]
+        {
+            get => _grid[x, y];
+            set => _grid[x, y] = value;
+        }
 
         private void Awake()
         {
             _mainCamera = Camera.main;
         }
 
-        public void InitializeGrid(PuzzleBlock[,] grid, PuzzleBlock endLevel)
+        public void InitializeLevel(PuzzleBlock[,] grid, PuzzleBlock endLevel, int movesCount)
         {
             if (_grid != null)
             {
@@ -33,10 +46,15 @@ namespace Game.Scripts
 
             _grid = grid;
             _endLevel = endLevel;
+            this.movesCount = movesCount;
+            _movesCountText.text = movesCount.ToString();
+            _gameOver = false;
         }
 
         private void Update()
         {
+            if (_gameOver) return;
+
             if (_currentPuzzleBlock != null)
             {
                 MoveWithMouse();
@@ -213,6 +231,7 @@ namespace Game.Scripts
                         _endLevel.CurrentPos.y == plaxeY)
                     {
                         Debug.Log("Уровень пройден");
+                        break;
                     }
 
                     // 🏁 end 🏁
@@ -230,8 +249,21 @@ namespace Game.Scripts
         {
             if (_currentPuzzleBlock.CurrentPos != new Vector2Int(plaxeX, plaxeY))
             {
-                Debug.Log("Ход потрачен");
+                movesCount--;
+
+                _movesCountText.text = movesCount.ToString();
+
+                if (movesCount <= 0)
+                {
+                    GameOver();
+                }
             }
+        }
+
+        private void GameOver()
+        {
+            _gameOver = true;
+            _gameOverPanel.SetActive(true);
         }
     }
 }

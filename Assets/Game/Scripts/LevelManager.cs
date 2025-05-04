@@ -12,6 +12,7 @@ namespace Game.Scripts
     {
         [SerializeField] private Button nextLevelButton;
         [SerializeField] private Button backLevelButton;
+        [SerializeField] private Button restartButton;
         [SerializeField] private TextMeshProUGUI currentLevelText;
         [FormerlySerializedAs("grid")] [SerializeField] private PuzzleGrid puzzleGrid;
         [SerializeField] private int maxLevels = 3;
@@ -24,6 +25,8 @@ namespace Game.Scripts
                 nextLevelButton.onClick.AddListener(NextLevel);
             if (backLevelButton != null)
                 backLevelButton.onClick.AddListener(BackLevel);
+            if (restartButton != null)
+                restartButton.onClick.AddListener(RestartLevel);
 
             LoadLevel();
         }
@@ -73,7 +76,7 @@ namespace Game.Scripts
                 }
             }
 
-            puzzleGrid.InitializeGrid(puzzleBlocks, endLevel);
+            puzzleGrid.InitializeLevel(puzzleBlocks, endLevel, data.movesCount);
             AdjustGroundToGrid();
         }
 
@@ -88,11 +91,11 @@ namespace Game.Scripts
             if (instantiate.TryGetComponent(out PuzzleBlock puzzleBlock))
             {
                 Vector2Int basePos = positions[0];
+                puzzleBlock.CurrentPos = basePos;
                 puzzleBlock.transform.position = new Vector3(basePos.x, 0, basePos.y);
 
                 foreach (var pos in positions)
                 {
-                    puzzleBlock.CurrentPos = new Vector2Int(pos.x, pos.y);
                     puzzleBlocks[pos.x, pos.y] = puzzleBlock;
                 }
             }
@@ -107,6 +110,11 @@ namespace Game.Scripts
 
             // Смещение, чтобы левый нижний угол имел позицию 0,0
             puzzleGrid.transform.position = new Vector3(puzzleGrid.GridSize.x / 2f - 0.5f, 0f, puzzleGrid.GridSize.y / 2f - 0.5f);
+        }
+
+        private void RestartLevel()
+        {
+            InitializeLevel();
         }
     }
 }

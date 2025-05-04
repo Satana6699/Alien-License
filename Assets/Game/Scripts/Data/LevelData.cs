@@ -7,6 +7,8 @@ namespace Game.Scripts.Data
     public class LevelData
     {
         public Vector2Int size;
+        public int movesCount;
+        // remainingMoves
         public List<Block> blocks;
     }
 }
